@@ -1,6 +1,7 @@
 import { Hero } from "@/components/hero";
 import { Header } from "../../../components/header";
 import { CarCatalog } from "./car-catalog";
+import { Car } from "@prisma/client";
 
 const VehiclePage = () => {
   return (
