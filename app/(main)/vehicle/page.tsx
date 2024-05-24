@@ -7,7 +7,7 @@ const VehiclePage = () => {
   return (
     <div>
       <Header />
-      <Hero title="Naša vozila" className="h-[200px] p-0 m-0 bg-green-500" />
+      <Hero title="Naša vozila" className="h-[200px] p-0 m-0 bg-indigo-500" />
       <CarCatalog />
     </div>
   );
