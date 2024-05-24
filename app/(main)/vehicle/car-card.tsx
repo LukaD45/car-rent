@@ -1,4 +1,3 @@
-// components/vehicle/car-card.tsx
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
@@ -14,7 +13,6 @@ const CarCard = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get("/api/cars");
-
         setCars(response.data);
       } catch (error) {
         console.error("Error fetching cars:", error);
@@ -26,7 +24,7 @@ const CarCard = () => {
 
   return (
     <div>
-      <div className=" flex space-x-6 justify-center">
+      <div className="flex space-x-6 justify-center">
         {cars.map((car) => (
           <div key={car.id} className="w-[400px]">
             <div className="text-2xl space-y-4">
@@ -43,7 +41,7 @@ const CarCard = () => {
             </div>
             <div>
               <Image
-                src="/peugeot-308.png"
+                src={car.slika.startsWith("/") ? car.slika : `/${car.slika}`} // Ensure leading slash
                 alt={`${car.marka} ${car.model}`}
                 className="mx-auto"
                 width={300}
@@ -84,7 +82,7 @@ const CarCard = () => {
                 </div>
                 <div className="hidden h-10 group-hover:flex items-center justify-center absolute mt-10 p-8 inset-0 text-white rounded-full">
                   <Button>
-                    <CarDetails />
+                    <CarDetails car={car} />
                   </Button>
                 </div>
               </div>

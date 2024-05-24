@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -13,61 +14,88 @@ import {
 } from "@/components/ui/alert-dialog";
 import Image from "next/image";
 
-export default function CarDetails() {
+interface Car {
+  marka: string;
+  model: string;
+  slika: string;
+  klasa: string;
+  potrosnja: number;
+  brojcilindara: number;
+  pogonskiKotaci: string;
+  vrstaMotora: string;
+  obujamMotora: number;
+  ubrzanje: number;
+  boja: string;
+}
+
+interface CarDetailsProps {
+  car: Car;
+}
+export default function CarDetails({ car }: CarDetailsProps) {
+  const router = useRouter();
+
+  const handleRentClick = () => {
+    router.push("/reservation");
+  };
+
   return (
     <div>
       <AlertDialog>
         <AlertDialogTrigger className="text-white bg-blue-600 rounded-full px-24 py-3">
           Details
         </AlertDialogTrigger>
-        <AlertDialogContent className="bg-white dark:bg-black flex flex-col items-center w-[90%] md:w-full  justify-center">
+        <AlertDialogContent className="bg-white dark:bg-black flex flex-col items-center w-[90%] md:w-full justify-center">
           <AlertDialogHeader>
             <AlertDialogTitle className="my-6 text-4xl flex flex-col space-y-5 items-center text-black dark:text-white text-center">
               <Image src="logo.svg" alt="logo" width={100} height={50} />
-              <p> Toyota Corolla</p>
+              <p>
+                {car.marka} {car.model}
+              </p>
             </AlertDialogTitle>
             <AlertDialogDescription>
-              <div className="mb-6 ">
-                <div className=" w-[100%] flex flex-col md:flex-row justify-start items-center space-x-0 space-y-3 md:space-y-0 md:space-x-8">
+              <div className="mb-6">
+                <div className="w-[100%] flex flex-col md:flex-row justify-start items-center space-x-0 space-y-3 md:space-y-0 md:space-x-8">
                   <Image
-                    src="/peugeot-308.png"
-                    alt="peugeot"
+                    src={
+                      car.slika.startsWith("/") ? car.slika : `/${car.slika}`
+                    }
+                    alt={`${car.marka} ${car.model}`}
                     width={400}
                     height={400}
                   />
                 </div>
-                <div className=" w-[95%] text-lg mt-8 space-y-4 items-center ">
+                <div className="w-[95%] text-lg mt-8 space-y-4 items-center">
                   <div className="flex w-full justify-between">
                     <p>Klasa</p>
-                    <p className="text-black">Hatchback</p>
+                    <p className="text-black">{car.klasa}</p>
                   </div>
                   <div className="flex w-full justify-between">
                     <p>Potrošnja</p>
-                    <p className="text-black">7.3</p>
+                    <p className="text-black">{car.potrosnja}</p>
                   </div>
                   <div className="flex w-full justify-between">
                     <p>Broj cilindara</p>
-                    <p className="text-black">4</p>
+                    <p className="text-black">{car.brojcilindara}</p>
                   </div>
                   <div className="flex w-full justify-between">
                     <p>Pogonski kotači</p>
-                    <p className="text-black">FWD</p>
+                    <p className="text-black">{car.pogonskiKotaci}</p>
                   </div>
                   <div className="flex w-full justify-between">
                     <p>Vrsta motora</p>
-                    <p className="text-black">Dizel</p>
+                    <p className="text-black">{car.vrstaMotora}</p>
                   </div>
                   <div className="flex w-full justify-between">
                     <p>Obujam motora</p>
-                    <p className="text-black">1496 ccm3</p>
+                    <p className="text-black">{car.obujamMotora} ccm3</p>
                   </div>
                   <div className="flex w-full justify-between">
                     <p>Ubrzanje: (0 - 100 km/h)</p>
-                    <p className="text-black">11.7 s</p>
+                    <p className="text-black">{car.ubrzanje}s</p>
                   </div>
                   <div className="flex w-full justify-between">
                     <p>Boja</p>
-                    <p className="text-black">Zelena</p>
+                    <p className="text-black">{car.boja}</p>
                   </div>
                 </div>
               </div>
@@ -79,7 +107,7 @@ export default function CarDetails() {
             </AlertDialogCancel>
             <AlertDialogAction
               className="bg-red-500 hover:bg-red-400"
-              onClick={() => {}}
+              onClick={handleRentClick}
             >
               Iznajmi
             </AlertDialogAction>

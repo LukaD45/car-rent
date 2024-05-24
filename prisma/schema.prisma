@@ -19,6 +19,7 @@ model Car {
   id              String  @id @default(auto()) @map("_id") @db.ObjectId
   marka           String
   model           String
+  slika           String
   klasa           String
   cijena          String
   potrosnja       Float
@@ -28,4 +29,17 @@ model Car {
   obujamMotora    Float
   ubrzanje        Float
   boja            String
+  reservation    Reservation[]
+}
+
+model Reservation {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  car         Car     @relation(fields: [carId], references: [id])
+  carId       String   @db.ObjectId
+  startDate   DateTime
+  endDate     DateTime
+  totalPrice  Float
+
+
+  @@index([carId])
 }

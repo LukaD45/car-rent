@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^5.0.10",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/material": "^5.15.18",
     "@prisma/client": "^5.14.0",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-dialog": "^1.0.5",
@@ -24,6 +27,8 @@
     "next": "14.2.3",
     "prisma": "^5.14.0",
     "react": "^18",
+    "react-date-picker": "^11.0.0",
+    "react-date-range": "^2.0.1",
     "react-dom": "^18",
     "react-icons": "^5.2.1",
     "tailwind-merge": "^2.3.0",
@@ -32,6 +37,7 @@
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
+    "@types/react-date-range": "^1.4.9",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
