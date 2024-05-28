@@ -34,12 +34,14 @@ model Car {
 
 model Reservation {
   id          String  @id @default(auto()) @map("_id") @db.ObjectId
-  car         Car     @relation(fields: [carId], references: [id])
   carId       String   @db.ObjectId
   startDate   DateTime
   endDate     DateTime
   totalPrice  Float
+  createdAt   DateTime @default(now())
+  
 
 
   @@index([carId])
+   car         Car     @relation(fields: [carId], references: [id])
 }

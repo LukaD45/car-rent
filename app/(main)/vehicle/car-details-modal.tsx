@@ -13,6 +13,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import Image from "next/image";
+import { MenuIcon } from "lucide-react";
 
 interface Car {
   marka: string;
@@ -41,8 +42,8 @@ export default function CarDetails({ car }: CarDetailsProps) {
   return (
     <div>
       <AlertDialog>
-        <AlertDialogTrigger className="text-white bg-blue-600 rounded-full px-24 py-3">
-          Details
+        <AlertDialogTrigger className="text-white  rounded-full ">
+          <MenuIcon />
         </AlertDialogTrigger>
         <AlertDialogContent className="bg-white dark:bg-black flex flex-col items-center w-[90%] md:w-full justify-center">
           <AlertDialogHeader>

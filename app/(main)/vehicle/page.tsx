@@ -1,14 +1,40 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { Car } from "@prisma/client";
 import { Hero } from "@/components/hero";
 import { Header } from "../../../components/header";
-import { CarCatalog } from "./car-catalog";
-import { Car } from "@prisma/client";
+import CarCard from "./car-card";
+import Link from "next/link";
 
 const VehiclePage = () => {
+  const [cars, setCars] = useState<Car[]>([]);
+
+  useEffect(() => {
+    const fetchCars = async () => {
+      try {
+        const response = await axios.get("/api/cars");
+        setCars(response.data);
+      } catch (error) {
+        console.error("Error fetching cars:", error);
+      }
+    };
+
+    fetchCars();
+  }, []);
+
   return (
     <div>
       <Header />
       <Hero title="Naša vozila" className="h-[200px] p-0 m-0 bg-indigo-500" />
-      <CarCatalog />
+      <div className="flex space-x-6 max-w-[1280px] mx-auto justify-center">
+        {cars.map((car) => (
+          <Link href={`/vehicle/${car.id}`} key={car.id} passHref>
+            <CarCard car={car} />
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };
