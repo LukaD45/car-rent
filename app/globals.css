@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* In your CSS file */
+.disabled-date {
+  background-color: #f5f5f5; /* Grayish background color */
+  color: #aaa; /* Grayish text color */
+  cursor: not-allowed; /* Change cursor to not-allowed */
+}
+
+.hero-marketing1 {
+  background-image: url("/hero-marketing1.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .hero-marketing {
   background-image: url("/hero-marketing.svg");
   background-repeat: no-repeat;

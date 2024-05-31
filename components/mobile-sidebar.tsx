@@ -7,9 +7,9 @@ export const MobileSidebar = () => {
   return (
     <Sheet>
       <SheetTrigger>
-        <Menu className="text-white" />
+        <Menu />
       </SheetTrigger>
-      <SheetContent className="p-0 z-[100]" side="right">
+      <SheetContent className="p-0 z-[100] bg-blue-500" side="right">
         <Sidebar />
       </SheetContent>
     </Sheet>

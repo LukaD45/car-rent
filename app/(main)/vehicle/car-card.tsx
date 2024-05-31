@@ -4,14 +4,19 @@ import Image from "next/image";
 import { Car } from "@prisma/client";
 import { Button } from "@/components/ui/button";
 import CarDetails from "./car-details-modal";
+import { useRouter } from "next/navigation";
 
 type CarCardProps = {
   car: Car;
 };
 
 const CarCard = ({ car }: CarCardProps) => {
+  const router = useRouter();
   return (
-    <div className="w-[400px]">
+    <div
+      onClick={() => router.push(`/vehicle/${car.id}`)}
+      className="w-[400px]"
+    >
       <div className="flex justify-between">
         <div className="text-2xl space-y-4">
           <h1>

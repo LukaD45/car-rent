@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
 import axios from "axios";
 import { Car } from "@prisma/client";
 import CarHead from "./car-head";
@@ -8,17 +9,15 @@ import CarInfo from "./car-info";
 import CarReservation from "./car-reservation";
 
 const CarPage = () => {
-  const url = new URL(window.location.href);
-  const segment = url.pathname.split("/");
-  const carId = segment[2];
+  const { carId } = useParams();
 
-  const [car, setCar] = useState<Car>();
+  const [car, setCar] = useState<Car | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         if (!carId) {
-          console.log("No cars error");
+          console.log("No car ID error");
           return;
         }
         const response = await axios.get(`/api/cars/${carId}`);
@@ -29,13 +28,13 @@ const CarPage = () => {
     };
 
     fetchData();
-  }, [carId]); // Use carId as dependency
+  }, [carId]);
 
   return (
     <div>
       <Header />
-      <div className="pb-10 ">
-        {car?.id && (
+      <div className="pb-10">
+        {car && (
           <div>
             <div className="mx-auto max-w-[1280px] bg-indigo-400">
               <CarHead src={car.slika} />
@@ -50,7 +49,7 @@ const CarPage = () => {
                   potrosnja={car.potrosnja}
                   ubrzanje={car.ubrzanje}
                 />
-                <CarReservation />
+                <CarReservation carId={car.id} cijena={car.cijena.toString()} />
               </div>
             </div>
           </div>

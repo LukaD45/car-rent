@@ -39,6 +39,7 @@ model Reservation {
   endDate     DateTime
   totalPrice  Float
   createdAt   DateTime @default(now())
+  ownerId     String?
   
 
 
