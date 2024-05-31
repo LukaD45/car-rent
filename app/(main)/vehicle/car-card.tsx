@@ -2,8 +2,6 @@
 
 import Image from "next/image";
 import { Car } from "@prisma/client";
-import { Button } from "@/components/ui/button";
-import CarDetails from "./car-details-modal";
 import { useRouter } from "next/navigation";
 
 type CarCardProps = {
@@ -15,25 +13,20 @@ const CarCard = ({ car }: CarCardProps) => {
   return (
     <div
       onClick={() => router.push(`/vehicle/${car.id}`)}
-      className="w-[400px]"
+      className="border-2 border-neutral-300 rounded-xl p-2 hover:cursor-pointer mx-auto w-[350px]"
     >
       <div className="flex justify-between">
         <div className="text-2xl space-y-4">
-          <h1>
+          <h1 className="text-3xl">
             {car.marka} {car.model}
           </h1>
           <h3>
             <p>
-              <sup>$</sup>
+              <sup>€</sup>
               <strong>{car.cijena}</strong>
-              <sub>/day</sub>
+              <sub>/dan</sub>
             </p>
           </h3>
-        </div>
-        <div>
-          <Button>
-            <CarDetails car={car} />
-          </Button>
         </div>
       </div>
       <div>
@@ -45,7 +38,7 @@ const CarCard = ({ car }: CarCardProps) => {
           height={100}
         />
         <div className="relative group w-full">
-          <div className="flex justify-between text-grey group-hover:invisible w-full">
+          <div className="flex justify-between text-grey w-full">
             <div className="space-y-4 mx-auto">
               <Image
                 src="/transmission.png"
@@ -74,11 +67,8 @@ const CarCard = ({ car }: CarCardProps) => {
                 height={40}
                 className="mt-7 mx-auto"
               />
-              <p>{car.boja}</p>
+              <p>{car.potrosnja} l/100km</p>
             </div>
-          </div>
-          <div className="hidden h-2 group-hover:flex items-center w-[70%] justify-center mx-auto absolute mt-10 py-6 inset-0 text-white rounded-full">
-            <Button> Iznajmi</Button>
           </div>
         </div>
       </div>

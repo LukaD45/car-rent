@@ -34,8 +34,8 @@ export const Sidebar = ({ className }: Props) => {
         />
         <hr></hr>
         <SidebarItem
-          label="Poslovnice"
-          href="/branches"
+          label="O nama"
+          href="/about us"
           icon={<Building size={32} />}
         />
         <hr></hr>

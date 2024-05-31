@@ -1,8 +1,10 @@
-import { useUser } from "@clerk/nextjs"; // Ensure you have @clerk/nextjs set up
+import { useState } from "react";
+import { useUser } from "@clerk/nextjs";
 import { ColumnDef } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
 import { ArrowUpDown } from "lucide-react";
-import { format } from "date-fns";
+import DeleteModal from "@/app/(main)/reservation/delete-modal";
+import axios from "axios";
 
 export type Reservation = {
   id: string;
@@ -21,21 +23,15 @@ export const columns: ColumnDef<Reservation>[] = [
   },
   {
     accessorKey: "carId",
-    header: "Car ID",
+    header: "Car Id",
   },
   {
     accessorKey: "startDate",
     header: "Start Date",
-    cell: ({ row }) => (
-      <div>{format(new Date(row.original.startDate), "yyyy-MM-dd")}</div>
-    ),
   },
   {
     accessorKey: "endDate",
     header: "End Date",
-    cell: ({ row }) => (
-      <div>{format(new Date(row.original.endDate), "yyyy-MM-dd")}</div>
-    ),
   },
   {
     accessorKey: "totalPrice",
@@ -43,18 +39,27 @@ export const columns: ColumnDef<Reservation>[] = [
   },
   {
     accessorKey: "createdAt",
-    header: ({ column }) => (
-      <Button
-        variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-      >
-        Date Added
-        <ArrowUpDown className="ml-4 h-3 w-3" />
-      </Button>
-    ),
+    header: ({ column }) => {
+      const [sorted, setSorted] = useState<"asc" | "desc" | undefined>();
+
+      const handleSorting = () => {
+        const newSorted = !sorted; // Toggle between true and false
+        column.toggleSorting(newSorted);
+        setSorted(newSorted ? "asc" : "desc"); // Update sorted state accordingly
+      };
+
+      return (
+        <Button variant="ghost" onClick={handleSorting}>
+          Date Added
+          <ArrowUpDown
+            className={`ml-4 h-3 w-3 ${sorted === "asc" ? "rotate-180" : ""}`}
+          />
+        </Button>
+      );
+    },
     cell: ({ row }) => (
       <div className="ml-4">
-        {format(new Date(row.original.createdAt), "yyyy-MM-dd")}
+        {new Date(row.original.createdAt).toLocaleDateString("en-GB")}
       </div>
     ),
   },
@@ -66,9 +71,30 @@ export const columns: ColumnDef<Reservation>[] = [
       const { user } = useUser();
 
       if (user && reservation.ownerId === user.id) {
-        return <div className="flex space-x-4">hello</div>;
-      } else {
-        return null;
+        const handleDeleteReservation = async (reservationId: string) => {
+          try {
+            await axios.delete(`/api/reservations/${reservationId}`);
+
+            console.log(
+              `Reservation with ID ${reservationId} deleted successfully.`
+            );
+            // Optionally, you can update the UI or trigger any necessary actions
+          } catch (error) {
+            console.error(
+              `Error deleting reservation with ID ${reservationId}:`,
+              error
+            );
+          }
+        };
+
+        return (
+          <div className="flex space-x-4">
+            <DeleteModal
+              reservationId={reservation.id}
+              onDeleted={handleDeleteReservation}
+            />
+          </div>
+        );
       }
     },
   },

@@ -1,15 +1,15 @@
-"use client";
-
+import { useState } from "react";
+import { useUser } from "@clerk/nextjs"; // Ensure you have @clerk/nextjs set up
 import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
   getPaginationRowModel,
-  getSortedRowModel,
   useReactTable,
   SortingState,
 } from "@tanstack/react-table";
-import { useState } from "react";
+import { Button } from "@/components/ui/button";
+
 import {
   Table,
   TableBody,
@@ -18,15 +18,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"; // Ensure the import path is correct
-import { Button } from "@/components/ui/button";
-import { Reservation } from "./columns"; // Import the Reservation type
 
-interface DataTableProps<TData extends Reservation, TValue> {
+interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
 }
 
-export function DataTable<TData extends Reservation, TValue>({
+export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
@@ -41,7 +39,6 @@ export function DataTable<TData extends Reservation, TValue>({
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
     initialState: {
       pagination: {
         pageSize: 5,

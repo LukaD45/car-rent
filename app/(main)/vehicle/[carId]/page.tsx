@@ -33,12 +33,12 @@ const CarPage = () => {
   return (
     <div>
       <Header />
-      <div className="pb-10">
+      <div className="pb-1 h-full">
         {car && (
           <div>
-            <div className="mx-auto max-w-[1280px] bg-indigo-400">
+            <div className="mx-auto max-w-[400px] md:max-w-[1480px] ">
               <CarHead src={car.slika} />
-              <div className="flex justify-center space-x-20">
+              <div className="flex flex-col md:flex-row justify-center md:space-x-20">
                 <CarInfo
                   marka={car.marka}
                   model={car.model}

@@ -8,8 +8,8 @@ const CarHead: React.FC<CarHeadProps> = ({ src }) => {
   const imagePath = src.startsWith("/") ? src : `/${src}`;
 
   return (
-    <div className="mx-auto max-w-lg">
-      <Image src={imagePath} alt="Car Image" width={500} height={300} />
+    <div className="mx-auto max-w-xl pt-10">
+      <Image src={imagePath} alt="Car Image" width={500} height={700} />
     </div>
   );
 };

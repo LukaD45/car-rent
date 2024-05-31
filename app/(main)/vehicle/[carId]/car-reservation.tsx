@@ -27,7 +27,7 @@ const CarReservation: React.FC<CarReservationProps> = ({ cijena, carId }) => {
 
   const handleReservation = async () => {
     if (!date?.from || !date?.to) {
-      alert("Please select a date range.");
+      toast.error("Please select dates");
       return;
     }
     try {
@@ -51,29 +51,31 @@ const CarReservation: React.FC<CarReservationProps> = ({ cijena, carId }) => {
   };
 
   return (
-    <div className="mt-[120px] border border-black rounded-xl w-[480px]">
+    <div className="md:mt-[125px] mt-10 border-neutral-400 border rounded-xl  w-[380px]">
       <div className="flex flex-row items-center gap-1 p-4">
-        <div className="text-2xl font-semibold">$ {cijena}</div>
-        <div className="font-light text-neutral-700">per day</div>
+        <div className="text-2xl  font-semibold">€ {cijena}</div>
+        <div className="font-light text-neutral-700">po danu</div>
       </div>
       <hr />
-      <DatePickerWithRange
-        date={date}
-        setDate={setDate}
-        className="mt-3"
-        carId={carId}
-      />
-      {totalPrice !== null && (
-        <div className="p-4">
-          <div className="text-xl">Total Price: ${totalPrice.toFixed(2)}</div>
-        </div>
-      )}
-      <Button
-        onClick={handleReservation}
-        className="mt-4 p-4 rounded-full bg-red-500 text-white"
-      >
-        Reserve
-      </Button>
+      <div className="flex flex-col justify-center items-center">
+        <DatePickerWithRange
+          date={date}
+          setDate={setDate}
+          className="mt-4"
+          carId={carId}
+        />
+        {totalPrice !== null && (
+          <div className="p-4">
+            <div className="text-xl">Total Price: ${totalPrice.toFixed(2)}</div>
+          </div>
+        )}
+        <Button
+          onClick={handleReservation}
+          className="mt-4 p-4 rounded-full bg-red-500 text-white"
+        >
+          Reserve
+        </Button>
+      </div>
     </div>
   );
 };

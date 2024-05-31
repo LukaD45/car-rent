@@ -5,6 +5,7 @@ import axios from "axios";
 import { DataTable } from "./data-table";
 import { columns, Reservation } from "./columns";
 import { Header } from "@/components/header";
+import { Hero } from "@/components/hero";
 
 const ReservationPage = () => {
   const [reservations, setReservations] = useState<Reservation[]>([]);
@@ -27,6 +28,7 @@ const ReservationPage = () => {
   return (
     <div className="mb-10">
       <Header />
+      <Hero title="Rezervacije" />
       {error ? (
         <div className="text-red-500">{error}</div>
       ) : (

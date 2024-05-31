@@ -6,7 +6,6 @@ import { Car } from "@prisma/client";
 import { Hero } from "@/components/hero";
 import { Header } from "../../../components/header";
 import CarCard from "./car-card";
-import { useRouter } from "next/navigation";
 
 const VehiclePage = () => {
   const [cars, setCars] = useState<Car[]>([]);
@@ -27,8 +26,8 @@ const VehiclePage = () => {
   return (
     <div>
       <Header />
-      <Hero title="Naša vozila" className="h-[200px] p-0 m-0 bg-indigo-500" />
-      <div className="flex space-x-6 max-w-[1280px] mx-auto justify-center">
+      <Hero title="Naša vozila" className="h-[400px] p-0 m-0 bg-white" />
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-5 max-w-[1480px] mx-auto">
         {cars.map((car) => (
           <CarCard key={car.id} car={car} />
         ))}

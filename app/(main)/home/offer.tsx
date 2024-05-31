@@ -2,14 +2,14 @@ import { Route, ScanEye, ShieldCheck, ShieldCheckIcon } from "lucide-react";
 
 export const Offer = () => {
   return (
-    <section className="py-12 sm:py-24 lg:py-10 px-3 md:px-10 lg:px-24 bg-primary/20">
+    <section className="py-12 sm:py-24 lg:py-10 bg-indigo-700 px-3 md:px-10 lg:px-24 ">
       <div className="flex flex-col items-center">
-        <h1 className="2xl:text-6xl mb-20 text-4xl sm:text-5xl font-semibold sm:min-w-[400px] max-w-[700px] md:text-center">
+        <h1 className="2xl:text-6xl mb-10 md:mb-20 text-4xl text-white sm:text-5xl font-semibold sm:min-w-[400px] max-w-[700px] md:text-center">
           Zašto izabrati nas
         </h1>
 
         <div className="flex flex-col xl:flex-row justify-between xl:space-x-24 space-y-12 xl:space-y-0">
-          <div className="text-center space-y-6 shadow-xl rounded-md p-8 bg-primary/20">
+          <div className="text-center space-y-6 shadow-xl rounded-md p-8 bg-white">
             <Route className="mx-auto" size={100} />
             <h2 className="text-3xl font-semibold">Fleksibilnost</h2>
 
@@ -20,7 +20,7 @@ export const Offer = () => {
               pogodnost.
             </p>
           </div>
-          <div className="text-center space-y-6 shadow-xl rounded-md p-8 bg-primary/20">
+          <div className="text-center space-y-6 shadow-xl rounded-md p-8 bg-white">
             <ScanEye className="mx-auto" size={100} />
             <h2 className="text-3xl font-semibold">Transparentnost</h2>
             <p className="text-md max-w-[350px] m-auto">
@@ -29,7 +29,7 @@ export const Offer = () => {
               omogućava da sa sigurnošću planirate svoj budžet.
             </p>
           </div>
-          <div className="text-center  space-y-6 shadow-xl rounded-md p-8 bg-primary/20">
+          <div className="text-center  space-y-6 shadow-xl rounded-md p-8 bg-white">
             <ShieldCheck className="mx-auto" size={100} />
             <h2 className="text-3xl font-semibold">Kvaliteta i sigurnost</h2>
             <p className="text-md max-w-[350px] m-auto">

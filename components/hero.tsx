@@ -10,19 +10,11 @@ export const Hero = ({ className, title }: Props) => {
   return (
     <div
       className={cn(
-        "bg-neutral-400 h-[600px] flex flex-col justify-center items-center text-center text-4xl",
+        "bg-neutral-400 text-white hero-home h-[500px] flex flex-col justify-center items-center text-center text-4xl",
         className
       )}
     >
-      <h1>{title}</h1>
-      <div className="space-x-10 py-5 ">
-        <Link href="/vehicle">
-          <Button>Iznajmite</Button>
-        </Link>
-        <Link href="#">
-          <Button>Informirajte se</Button>
-        </Link>
-      </div>
+      <h1 className="backdrop-blur-[3px] p-2 ">{title}</h1>
     </div>
   );
 };
