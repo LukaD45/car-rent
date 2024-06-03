@@ -1,14 +1,16 @@
-import { useState } from "react";
-import { useUser } from "@clerk/nextjs"; // Ensure you have @clerk/nextjs set up
+"use client";
+
 import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
-  getPaginationRowModel,
   useReactTable,
+  getPaginationRowModel,
   SortingState,
+  getSortedRowModel,
+  ColumnFiltersState,
+  getFilteredRowModel,
 } from "@tanstack/react-table";
-import { Button } from "@/components/ui/button";
 
 import {
   Table,
@@ -17,7 +19,12 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"; // Ensure the import path is correct
+} from "@/components/ui/table";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+
+import React from "react";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -28,15 +35,13 @@ export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
-  const [sorting, setSorting] = useState<SortingState>([]);
-
+  const [sorting, setSorting] = React.useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    []
+  );
   const table = useReactTable({
     data,
     columns,
-    state: {
-      sorting,
-    },
-    onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     initialState: {
@@ -44,11 +49,19 @@ export function DataTable<TData, TValue>({
         pageSize: 5,
       },
     },
+    onSortingChange: setSorting,
+    getSortedRowModel: getSortedRowModel(),
+    onColumnFiltersChange: setColumnFilters,
+    getFilteredRowModel: getFilteredRowModel(),
+    state: {
+      sorting,
+      columnFilters,
+    },
   });
 
   return (
-    <div className="w-[1280px] mx-auto">
-      <div className="rounded-lg border mx-auto w-[1280px]">
+    <div>
+      <div className="rounded-md w-[95%] md:w-full bg-neutral-1000 mx-auto md:mx-0 border-2 dark:border">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -98,20 +111,20 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
+      <div className="flex items-center justify-end space-x-4 w-[95%] md:w-full py-4">
         <Button
-          variant="outline"
           size="sm"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
+          className="text-white dark:text-black hover:bg-primary/70"
         >
           Previous
         </Button>
         <Button
-          variant="outline"
           size="sm"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
+          className="text-white dark:text-black hover:bg-primary/70"
         >
           Next
         </Button>

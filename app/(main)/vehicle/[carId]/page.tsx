@@ -7,11 +7,13 @@ import CarHead from "./car-head";
 import { Header } from "@/components/header";
 import CarInfo from "./car-info";
 import CarReservation from "./car-reservation";
+import Loading from "../loading";
 
 const CarPage = () => {
   const { carId } = useParams();
 
   const [car, setCar] = useState<Car | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,6 +26,8 @@ const CarPage = () => {
         setCar(response.data);
       } catch (error) {
         console.error("Error fetching car details:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -34,7 +38,9 @@ const CarPage = () => {
     <div>
       <Header />
       <div className="pb-1 h-full">
-        {car && (
+        {loading ? (
+          <Loading />
+        ) : car ? (
           <div>
             <div className="mx-auto max-w-[400px] md:max-w-[1480px] ">
               <CarHead src={car.slika} />
@@ -53,6 +59,8 @@ const CarPage = () => {
               </div>
             </div>
           </div>
+        ) : (
+          <p>No car details available.</p>
         )}
       </div>
     </div>

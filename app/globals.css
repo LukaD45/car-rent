@@ -8,6 +8,14 @@
   cursor: not-allowed;
 }
 
+.contact-bg {
+  background-image: url("/contact.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-size: 2700px;
+}
+
 .car-bg {
   background-image: url("/car-bg.svg");
   background-repeat: no-repeat;

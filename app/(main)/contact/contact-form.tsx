@@ -17,18 +17,18 @@ export default function SimpleForm() {
   };
 
   return (
-    <div className="w-full h-full p-10 bg-contact-form">
+    <div className="w-full h-full p-10  contact-bg">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full  mx-auto  flex flex-col gap-y-2 md:w-10/12 "
+        className="w-full   mx-auto  flex flex-col gap-y-2 md:w-10/12 "
       >
-        <h1 className="mx-auto text-3xl md:text-6xl text-black mb-20">
+        <h1 className="mx-auto text-3xl md:text-6xl text-white mb-20">
           Kontaktirajte nas ovdje!
         </h1>
-        <div className="flex flex-col md:flex-row justify-center items-center space-x-0 space-y-3 md:space-y-0 md:space-x-8">
+        <div className="flex  flex-col md:flex-row justify-center items-center space-x-0 space-y-3 md:space-y-0 md:space-x-8">
           <div className="md:space-y-2 mb-4 flex flex-col  space-y-3">
-            <label className="text-black" htmlFor="name">
-              Korisničko ime
+            <label className="text-white" htmlFor="name">
+              Ime i Prezime
             </label>
             <input
               type="text"
@@ -48,7 +48,7 @@ export default function SimpleForm() {
           </div>
           <div className="flex flex-col md:flex-row justify-center items-center space-x-0 space-y-3 md:space-y-0 md:space-x-8">
             <div className="md:space-y-2 mb-4 flex flex-col  space-y-3">
-              <label className="text-black" htmlFor="email">
+              <label className="text-white" htmlFor="email">
                 Email
               </label>
               <input
@@ -67,23 +67,23 @@ export default function SimpleForm() {
         </div>
         <div className="flex flex-col  justify-center items-center space-x-0 space-y-3 md:space-y-0 md:space-x-8">
           <div className="md:space-y-2 mb-4 flex flex-col md:w-5/12 flex-1 space-y-3">
-            <label className="text-black" htmlFor="subject">
-              Tema
+            <label className="text-white" htmlFor="subject">
+              Broj telefona
             </label>
             <input
               type="text"
               {...register("subject", {
-                required: "Tema ne smije biti prazna",
+                required: "Broj ne smije biti prazan",
               })}
               className="lg:w-full h-[50px] pl-4 border border-black rounded-xl"
-              placeholder="Tema"
+              placeholder="097 / 565 / 3443"
             />
             {errors.subject && (
               <p className="text-red-500">{`${errors.subject.message}`}</p>
             )}
           </div>
           <div className="md:space-y-2 w-8/12 mb-4 flex flex-col space-y-3">
-            <label className="text-black" htmlFor="message">
+            <label className="text-white" htmlFor="message">
               Upit
             </label>
             <textarea
@@ -91,7 +91,7 @@ export default function SimpleForm() {
                 required: "Poruka ne smije biti prazna",
               })}
               className="w-full h-[200px] pl-4 resize-none border border-black pt-3 rounded-xl"
-              placeholder="Upit"
+              placeholder="Može li se platiti nakon završetka.."
             />
             {errors.message && (
               <p className="text-red-500">{`${errors.message.message}`}</p>

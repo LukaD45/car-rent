@@ -10,6 +10,7 @@ import Loading from "./loading";
 
 const VehiclePage = () => {
   const [cars, setCars] = useState<Car[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchCars = async () => {
@@ -18,6 +19,8 @@ const VehiclePage = () => {
         setCars(response.data);
       } catch (error) {
         console.error("Error fetching cars:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -28,11 +31,15 @@ const VehiclePage = () => {
     <div>
       <Header />
       <Hero title="Naša vozila" className="h-[400px] p-0 m-0 bg-white" />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-5 max-w-[1480px] mx-auto">
-        {cars.map((car) => (
-          <CarCard key={car.id} car={car} />
-        ))}
-      </div>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-5 max-w-[1480px] mx-auto">
+          {cars.map((car) => (
+            <CarCard key={car.id} car={car} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

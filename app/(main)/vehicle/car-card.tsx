@@ -13,7 +13,7 @@ const CarCard = ({ car }: CarCardProps) => {
   return (
     <div
       onClick={() => router.push(`/vehicle/${car.id}`)}
-      className="border-2 border-neutral-300 rounded-xl p-2 hover:cursor-pointer mx-auto w-[350px]"
+      className="border-2 border-neutral-300 rounded-xl p-2 hover:cursor-pointer hover:scale-105 duration-200 mx-auto w-[350px]"
     >
       <div className="flex justify-between">
         <div className="text-2xl space-y-4">

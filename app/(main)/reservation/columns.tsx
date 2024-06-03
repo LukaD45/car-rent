@@ -16,7 +16,9 @@ export type Reservation = {
   ownerId: string;
 };
 
-export const columns: ColumnDef<Reservation>[] = [
+export const columns = (
+  handleDeleteReservation: (reservationId: string) => void
+): ColumnDef<Reservation>[] => [
   {
     accessorKey: "id",
     header: "Reservation ID",
@@ -40,62 +42,40 @@ export const columns: ColumnDef<Reservation>[] = [
   {
     accessorKey: "createdAt",
     header: ({ column }) => {
-      const [sorted, setSorted] = useState<"asc" | "desc" | undefined>();
-
-      const handleSorting = () => {
-        const newSorted = !sorted; // Toggle between true and false
-        column.toggleSorting(newSorted);
-        setSorted(newSorted ? "asc" : "desc"); // Update sorted state accordingly
-      };
-
       return (
-        <Button variant="ghost" onClick={handleSorting}>
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
           Date Added
-          <ArrowUpDown
-            className={`ml-4 h-3 w-3 ${sorted === "asc" ? "rotate-180" : ""}`}
-          />
+          <ArrowUpDown className="ml-4 h-3 w-3" />
         </Button>
       );
     },
-    cell: ({ row }) => (
-      <div className="ml-4">
-        {new Date(row.original.createdAt).toLocaleDateString("en-GB")}
-      </div>
-    ),
+    cell: ({ row }) => {
+      return (
+        <div className="ml-4">
+          {new Date(row.original.createdAt).toLocaleDateString("en-GB")}
+        </div>
+      );
+    },
   },
   {
     accessorKey: "actions",
     header: "",
     cell: ({ row }) => {
       const reservation = row.original;
-      const { user } = useUser();
 
-      if (user && reservation.ownerId === user.id) {
-        const handleDeleteReservation = async (reservationId: string) => {
-          try {
-            await axios.delete(`/api/reservations/${reservationId}`);
-
-            console.log(
-              `Reservation with ID ${reservationId} deleted successfully.`
-            );
-            // Optionally, you can update the UI or trigger any necessary actions
-          } catch (error) {
-            console.error(
-              `Error deleting reservation with ID ${reservationId}:`,
-              error
-            );
-          }
-        };
-
-        return (
-          <div className="flex space-x-4">
+      return (
+        <div className="flex space-x-4">
+          <Button className="bg-red-500">
             <DeleteModal
               reservationId={reservation.id}
               onDeleted={handleDeleteReservation}
             />
-          </div>
-        );
-      }
+          </Button>
+        </div>
+      );
     },
   },
 ];
