@@ -6,6 +6,7 @@ import { Car } from "@prisma/client";
 import { Hero } from "@/components/hero";
 import { Header } from "../../../components/header";
 import CarCard from "./car-card";
+import Loading from "./loading";
 
 const VehiclePage = () => {
   const [cars, setCars] = useState<Car[]>([]);
