@@ -13,7 +13,7 @@ const CarCard = ({ car }: CarCardProps) => {
   return (
     <div
       onClick={() => router.push(`/vehicle/${car.id}`)}
-      className="border-2 border-neutral-300 rounded-xl p-2 hover:cursor-pointer hover:scale-105 duration-200 mx-auto w-[350px]"
+      className="border-2 dark:bg-neutral-700 border-neutral-300 dark:border-neutral-500 rounded-xl p-2 hover:cursor-pointer hover:scale-105 duration-200 mx-auto w-[350px]"
     >
       <div className="flex justify-between">
         <div className="text-2xl space-y-4">
@@ -42,7 +42,7 @@ const CarCard = ({ car }: CarCardProps) => {
             <div className="space-y-4 mx-auto">
               <Image
                 src="/transmission.png"
-                alt="Mjenjač"
+                alt="Vrsta motora"
                 width={30}
                 height={40}
                 className="mt-7 mx-auto"

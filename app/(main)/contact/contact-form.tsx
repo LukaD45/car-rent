@@ -17,12 +17,12 @@ export default function SimpleForm() {
   };
 
   return (
-    <div className="w-full h-full p-10  contact-bg">
+    <div className="w-full h-full p-0 m-0  contact-bg">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full   mx-auto  flex flex-col gap-y-2 md:w-10/12 "
       >
-        <h1 className="mx-auto text-3xl md:text-6xl text-white mb-20">
+        <h1 className="mx-auto text-3xl md:text-6xl mt-5 text-white mb-20">
           Kontaktirajte nas ovdje!
         </h1>
         <div className="flex  flex-col md:flex-row justify-center items-center space-x-0 space-y-3 md:space-y-0 md:space-x-8">
@@ -33,7 +33,7 @@ export default function SimpleForm() {
             <input
               type="text"
               className="w-full h-[50px] border border-black  pl-4 rounded-xl"
-              placeholder="Korisničko ime"
+              placeholder="Luka Dužaić"
               {...register("name", {
                 required: "Ime ne smije biti prazno",
                 minLength: {

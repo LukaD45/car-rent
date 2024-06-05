@@ -42,20 +42,21 @@ const CarPage = () => {
           <Loading />
         ) : car ? (
           <div>
-            <div className="mx-auto max-w-[400px] md:max-w-[1480px] ">
-              <CarHead src={car.slika} />
-              <div className="flex flex-col md:flex-row justify-center md:space-x-20">
+            <div className=" max-w-[400px] md:max-w-[1480px] ">
+              <div className="flex flex-col md:flex-row">
+                <CarHead src={car.slika} marka={car.marka} model={car.model} />
+                <CarReservation carId={car.id} cijena={car.cijena.toString()} />
+              </div>
+
+              <div className="flex flex-col md:flex-row justify-center ">
                 <CarInfo
-                  marka={car.marka}
-                  model={car.model}
                   klasa={car.klasa}
-                  cijena={car.cijena}
                   boja={car.boja}
                   vrstaMotora={car.vrstaMotora}
                   potrosnja={car.potrosnja}
                   ubrzanje={car.ubrzanje}
+                  pogonskiKotaci={car.pogonskiKotaci}
                 />
-                <CarReservation carId={car.id} cijena={car.cijena.toString()} />
               </div>
             </div>
           </div>

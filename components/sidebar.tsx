@@ -35,13 +35,13 @@ export const Sidebar = ({ className }: Props) => {
         <hr></hr>
         <SidebarItem
           label="O nama"
-          href="/about us"
+          href="/about-us"
           icon={<Building size={32} />}
         />
         <hr></hr>
         <SidebarItem
           label="Korisnički centar"
-          href="#"
+          href="/contact"
           icon={<HeartHandshake size={32} />}
         />
       </div>

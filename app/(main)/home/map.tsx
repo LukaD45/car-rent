@@ -1,6 +1,6 @@
 export default function Map() {
   return (
-    <section className="max-w-[1480px] mx-auto h-[30rem] md:h-[30rem] mb-20">
+    <section className="max-w-[1480px] mx-auto h-[30rem] md:h-[30rem] mb-24">
       <div className="my-10 w-full text-center text-4xl font-semibold">
         <h1>Pronađite nas ovdje!</h1>
       </div>

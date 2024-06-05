@@ -64,8 +64,10 @@ export default function ImageSlider() {
   ];
 
   return (
-    <section className="flex w-full flex-col items-center bg-white justify-center px-3 py-12 ">
-      <h1 className="text-3xl font-bold text-indigo-500">NAŠA FLOTA</h1>
+    <section className="flex w-full flex-col items-center justify-center px-3 py-12 ">
+      <h1 className="text-4xl font-bold text-indigo-500 dark:text-indigo-900">
+        NAŠA FLOTA
+      </h1>
       <p className="text-md hidden pt-4 md:flex">
         Više od 1.000 vozila, 100+ hibridnih vozila i 50+ novih modela
       </p>

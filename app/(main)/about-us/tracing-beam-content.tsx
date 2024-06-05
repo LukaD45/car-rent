@@ -5,7 +5,7 @@ import { TracingBeam } from "@/components/ui/tracing-beam";
 
 export function Timeline() {
   return (
-    <TracingBeam className="px-10 md:px-0 mt-24">
+    <TracingBeam className="px-10 md:px-0 mt-3 md:mt-10">
       <div className="lg:max-w-10xl mx-auto antialiased pt-4 relative">
         {dummyContent.map((item, index) => (
           <div

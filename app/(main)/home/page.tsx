@@ -6,6 +6,7 @@ import { Offer } from "@/app/(main)/home/offer";
 import { GeneralInfo } from "./general-info";
 import Map from "./map";
 import ImageSlider from "./image-carousel";
+import Footer from "../footer";
 
 const HomePage = () => {
   return (
@@ -17,6 +18,7 @@ const HomePage = () => {
       <Offer />
       <ImageSlider />
       <Map />
+      <Footer />
     </div>
   );
 };

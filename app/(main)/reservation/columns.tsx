@@ -68,7 +68,7 @@ export const columns = (
 
       return (
         <div className="flex space-x-4">
-          <Button className="bg-red-500">
+          <Button className="bg-red-500 hover:bg-red-300">
             <DeleteModal
               reservationId={reservation.id}
               onDeleted={handleDeleteReservation}

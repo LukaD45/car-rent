@@ -1,40 +1,88 @@
+import Image from "next/image";
+
 interface CarInfoProps {
-  marka: string;
-  model: string;
   klasa: string;
-  cijena: string;
   boja: string;
   vrstaMotora: string;
   potrosnja: number;
   ubrzanje: number;
+  pogonskiKotaci: string;
 }
 
 const CarInfo: React.FC<CarInfoProps> = ({
-  marka,
-  model,
   klasa,
-  cijena,
   boja,
   vrstaMotora,
   potrosnja,
   ubrzanje,
+  pogonskiKotaci,
 }) => {
   return (
-    <div className="max-w-[800px] text-black ">
-      <div className="flex justify-center items-center">
-        <h1 className="mt-10 text-4xl  md:text-5xl">
-          {marka} {model}
-        </h1>
-      </div>
-      <div className="text-blck border max-w-[250px] mt-10 mx-auto border-neutral-400 rounded-xl justify-center items-center">
-        <div className="flex flex-col text-xl justify-center p-2  space-y-5  mt-3">
-          <p>Klasa: {klasa}</p>
-          <p>Vrsta Motora: {vrstaMotora}</p>
-          <p>Boja: {boja}</p>
+    <div className="md:max-w-[800px] text-black mt-5 space-y-5 dark:text-white">
+      <div className="flex md:space-x-5 space-y-5 md:space-y-0 flex-col md:flex-row justify-center items-center ">
+        <div className="border-2 dark:bg-neutral-900 pl-4 rounded-lg flex items-center gap-x-6 w-[380px]">
+          <div>
+            <Image src="/engine.png" alt="Getriba" width={40} height={30} />
+          </div>
+
+          <div className="py-3">
+            <p>Vrsta motora</p>
+            <p className="font-bold">{vrstaMotora}</p>
+          </div>
         </div>
-        <div className="flex flex-col text-xl justify-center p-2 space-y-5 mt-3">
-          <p>Potrošnja: {potrosnja} L/100km</p>
-          <p>Ubrzanje: {ubrzanje}</p>
+        <div className="border-2 dark:bg-neutral-900 pl-4 rounded-lg flex items-center gap-x-6 w-[380px]">
+          <div>
+            <Image src="/klasa.png" alt="Getriba" width={40} height={30} />
+          </div>
+
+          <div className="py-3">
+            <p>Klasa</p>
+            <p className="font-bold">{klasa}</p>
+          </div>
+        </div>
+      </div>
+      <div className="flex md:space-x-5 space-y-5 md:space-y-0 flex-col md:flex-row justify-center items-center ">
+        <div className="border-2 dark:bg-neutral-900 pl-4 rounded-lg flex items-center gap-x-6 w-[380px]">
+          <div>
+            <Image src="/boja.png" alt="Getriba" width={40} height={30} />
+          </div>
+
+          <div className="py-3">
+            <p>Boja</p>
+            <p className="font-bold">{boja}</p>
+          </div>
+        </div>
+        <div className="border-2 dark:bg-neutral-900 pl-4 rounded-lg flex items-center gap-x-6 w-[380px]">
+          <div>
+            <Image src="/fuel.png" alt="Getriba" width={40} height={30} />
+          </div>
+
+          <div className="py-3">
+            <p>Potrošnja</p>
+            <p className="font-bold">{potrosnja} l/100km</p>
+          </div>
+        </div>
+      </div>
+      <div className="flex md:space-x-5 space-y-5 md:space-y-0 flex-col md:flex-row justify-center items-center ">
+        <div className="border-2 dark:bg-neutral-900 pl-4 rounded-lg flex items-center gap-x-6 w-[380px]">
+          <div>
+            <Image src="/drive.png" alt="Getriba" width={40} height={30} />
+          </div>
+
+          <div className="py-3">
+            <p>Pogonski kotači</p>
+            <p className="font-bold">{pogonskiKotaci}</p>
+          </div>
+        </div>
+        <div className="border-2 dark:bg-neutral-900 pl-4 rounded-lg flex items-center gap-x-6 w-[380px]">
+          <div>
+            <Image src="/ubrzanje.png" alt="Getriba" width={40} height={50} />
+          </div>
+
+          <div className="py-3">
+            <p>Ubrzanje (0-100km/h)</p>
+            <p className="font-bold">{ubrzanje}s</p>
+          </div>
         </div>
       </div>
     </div>
